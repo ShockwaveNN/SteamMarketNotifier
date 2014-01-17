@@ -44,9 +44,9 @@ end
 def notify
   settings_string = File.open('Mail.config').read
   setttings = JSON[settings_string]
-  gmail = Gmail.new(setttings['mail'], setttings['password'])
+  gmail = Gmail.new(setttings['mail_sender'], setttings['mail_sender_password'])
   email = gmail.generate_message do
-    to "shockwavenn@gmail.com"
+    to setttings['mail_to_notify']
     subject "Steam Market Notifier"
     body URL_ITEM
   end
